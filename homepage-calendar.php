@@ -77,11 +77,23 @@ function getDataChurch() {
         $htmlOutput = "<h2 class=\"wp-block-heading\"><mark style=\"background-color:rgba(0, 0, 0, 0);color:#f88a6b\" class=\"has-inline-color\">$headerText</mark></h2>";
 
         // Start the output list
-        if ($disableFlex) {
-            $htmlOutput .= "<ol style=\"white-space: nowrap;\">";
-        } else {
-            $htmlOutput .= "<ol>";
+        $htmlOutput .= "<ol class=\"wrap-condition\">";
+
+        // For small css i ain't gonna add a whole file
+        $htmlOutput .= "
+        <style>
+        @media (max-width: 674px) {
+            .wrap-condition {
+                white-space: normal;
+            }
         }
+        @media (min-width: 675px) {
+            .wrap-condition {
+                white-space: nowrap;
+            }
+        }
+        </style>
+        ";
 
         // Format and display the filtered events
         foreach ($filteredEvents as $event) {
